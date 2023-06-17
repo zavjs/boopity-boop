@@ -12,3 +12,6 @@
   border-radius: 5px;
   width: 90%;
 }
+:not(:has(:hover)):hover {
+  border: 1px solid green;
+}
