@@ -60,16 +60,41 @@
     </p>
   </section>
 
+  <!-- <div class="automation-panel">
+    <div class="automation-content">
+      <div style="display: flex; width: 100%;">
+        <h3 class="automation-title">Step 1. For loop</h3>
+        <div style="display: flex;  align-items: center; justify-content: flex-end;">
+          <div class="round"><img width="60%" src="/assets/question.png"></div>
+          <div class="round"><img width="30%" src="/assets/close.png"></div>
+        </div>
+      </div>
+      <div class="automation-info">Select an element</div>
+        <div class="automation-footer">
+          <button class="btn btn-add active" (click)="startClickInput()">Save</button>
+          <button class="btn btn-add" (click)="startClickInput()">Reset</button>
+        </div>       
+      </div>
+  </div> -->
   <div class="automation-panel">
     <div class="automation-content">
-      <h1 style="text-align: center">Your automation feature here</h1>
-      <h3 style="text-align: center">
-        Feel free to use whatever npm module, css framework or other tools you
-        want to use!
-        <div class="btn btn-add active" (click)="startClickInput()">click</div>
-        <div class="btn btn-add active" (click)="startInputClick()">input</div>
-        <div class="btn btn-add active" (click)="startLoopClick()">loop</div>
-      </h3>
-    </div>
+      <div style="display: flex; width: 100%;">
+        <h3 class="automation-title">Step 2. Do an action on each element</h3>
+        <div style="display: flex;  align-items: center; justify-content: flex-end;">
+          <div class="round"><img width="60%" src="/assets/question.png"></div>
+          <div class="round"><img width="30%" src="/assets/close.png"></div>
+        </div>
+      </div>
+      <div class="automation-info">Add action you want the bot to do on the page</div>
+      <div style="display: flex;">
+        <div class="box-action" [class.dark]="action.dark" *ngFor="let action of actions" (click)="startAction(action)">
+          <img [src]="action.icon">
+          <h4 style="color: black;">{{ action.title }}</h4>
+          <div style="font-size: 0.8rem; text-align: center;">{{ action.subtitle }}</div>
+        </div>
+      </div> 
+      </div>
+      <button class="btn btn-add active" (click)="runBotClick()">runBotClick</button>
+      <button class="btn btn-add active" (click)="runBotWrite()">runBotWrite</button>
   </div>
 </div>

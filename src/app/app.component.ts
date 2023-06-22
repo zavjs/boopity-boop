@@ -25,7 +25,6 @@ export class AppComponent {
       completed: false,
     },
   ];
-
   completedTasks = [
     {
       title: 'task 5',
@@ -60,45 +59,76 @@ export class AppComponent {
   }
   /////
   loop:any[]= [];
+  predicted:NodeListOf<any>|null = null;
   type = 0;
+  actions = [
+    {id: 1, icon: '/assets/click.png', title: 'Click a button', subtitle: 'allowyou to click on a button for ead element'},
+    {id: 2, icon: '/assets/input-text.png', title: 'Input text', subtitle: 'allows you to input text for each element'},
+    {id: 3, icon: '/assets/box-3.png', title: 'Store data', subtitle: 'Amet minim mollit non deserunt ullamco est sit.', dark: true},
+    {id: 4, icon: '/assets/box-4.png', title: 'If condition', subtitle: 'Amet minim mollit non deserunt ullamco est sit.', dark: true},
+    {id: 5, icon: '/assets/box-5.png', title: 'For Loop', subtitle: 'Amet minim mollit non deserunt ullamco est sit.', dark: true},
+  ]
   constructor() {
   }
   @HostListener('click', ['$event.target']) onClick(x:any) {
-    console.log('obj', x);
-    // if (this.type == 1) { //loop
-    x.style = "border: 1px dashed green";
-      this.loop.push(x)
-      this.processLoop();
-    // }
+    if (this.type == 5) {
+      x.style = "border: 1px dashed green";
+      if (this.loop.length != 3) {
+        this.loop.push(x)
+        this.processLoop();
+      } else {
+        this.clearLoop();
+      }
+    }
   }
+
   processLoop() {
-    if (this.loop.length == 2) {
-      console.log(this.loop);
+    if (this.loop.length == 3) {
       let filterName = '';
       let filterClass = '';
-      if (this.loop[0].nodeName == this.loop[1].nodeName) {
-        if (this.loop[0].className != '' && this.loop[0].className == this.loop[1].className) {
-          filterClass = '.'+this.loop[0].className.split(" ").join('.');
+      if (this.loop[1].nodeName == this.loop[2].nodeName) {
+        if (this.loop[1].className != '' && this.loop[1].className == this.loop[2].className) {
+          filterClass = '.'+this.loop[1].className.split(" ").join('.');
         }
-        if (this.loop[0].name && this.loop[0].name == this.loop[1].name) {
-          filterName = '[name=\''+this.loop[0].name+'\']';
+        if (this.loop[1].name && this.loop[1].name == this.loop[2].name) {
+          filterName = '[name=\''+this.loop[1].name+'\']';
         }
-        const elements = document.querySelectorAll(this.loop[0].nodeName+filterClass+filterName)
-        elements.forEach((el:any) => {
-          el.style = "border: 1px solid red";
-        })
+        this.predicted = document.querySelectorAll(this.loop[1].nodeName+filterClass+filterName)
+        this.markPredictedElements()
       } 
     }
   }
-  startClickInput() {
-
+  markPredictedElements() {
+    this.predicted?.forEach((el:any) => {
+      el.style = "border: 1px solid red";
+    })
   }
-  startInputClick() {
-
+  runBotClick() {
+    this.predicted?.forEach(x => {
+      x.click();
+    })
   }
-  startLoopClick() {
-    console.log('starting loop');
-    this.type = 1;
-
+  runBotWrite() {
+    this.predicted?.forEach(x => {
+      x.value = 'xxxxx';
+    })
+  }
+  clearLoop() {
+    this.predicted?.forEach(x => {
+      x.style = '';
+    })
+    this.loop.forEach(x => {
+      x.style = '';
+    })
+    this.loop = [];
+    this.predicted = null;
+  }
+  startAction(action:any) {
+    this.type = action.id
+    switch (action.id) {
+      case 5:
+        this.clearLoop();
+        break;
+    }
   }
 }

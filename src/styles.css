@@ -4,7 +4,7 @@
 
 body {
   font-size: 15px;
-  font-family: "Open Sans", sans-serif;
+  font-family: Roboto, "Open Sans", sans-serif;
   color: #444;
   background-color: #fefefe;
   background-image: linear-gradient(#fc6c48 0%, #ef5081 100%);
@@ -83,21 +83,25 @@ input::placeholder {
 }
 
 .btn-add {
-  background: #ddd;
-  color: #fefefe;
-  border-color: #ddd;
-  min-width: 17%;
-  pointer-events: none;
-  transition: all ease-in 0.25s;
+  background: white;
+  color: #4361EE;
+  border-color: #4361EE;
   font-size: 2.2em;
   line-height: 0.5em;
-  padding: 0.3em 0.3em;
+  padding: 15px 18px;
+  margin: 10px;
   float: right;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
 }
-
+.btn-add:hover {
+  background-color: #4442f6;
+  color: white;
+}
 .btn-add.active {
-  background: #6664ff;
-  border-color: #6664ff;
+  background-color: #4361EE;
+  color: white;
   pointer-events: visible;
 }
 
@@ -106,9 +110,7 @@ input::placeholder {
   border-color: #4442f6;
 }
 
-.btn-add:active {
-  transform: scale(0.95);
-}
+
 .control-buttons {
   position: absolute;
   bottom: 20px;
